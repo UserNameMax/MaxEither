@@ -4,13 +4,11 @@ import ru.mishenko.maksim.either.Either
 
 class HandlingScope<E, D> {
     var result: Either<E, D>? = null
-    fun returnSuccess(data: D): D {
+    fun returnSuccess(data: D) {
         result = Either.Success(data)
-        return data
     }
 
-    fun returnFailure(reason: E): D? {
+    fun returnFailure(reason: E) {
         result = Either.Failure(reason)
-        return null
     }
 }

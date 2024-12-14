@@ -11,7 +11,6 @@ import kotlinx.serialization.serializer
 import ru.mishenko.maksim.either.Either
 import ru.mishenko.maksim.either.factory.ReasonFactory
 import ru.mishenko.maksim.either.factory.either
-import ru.mishenko.maksim.either.flatten
 import ru.mishenko.maksim.either.getOrNull
 import ru.mishenko.maksim.either.handling.mapHandling
 import ru.mishenko.maksim.either.networkUtils.NetworkReasonFactory
@@ -32,7 +31,7 @@ fun <T> either(
                 } else {
                     Either.Failure(networkReasonFactory(response.status.value, textContent))
                 }
-            }.flatten()
+            }.mapHandling(reasonFactory) { it.getOrNull()!! } as Any
         } else {
             null
         }

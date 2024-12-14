@@ -3,9 +3,6 @@ package ru.mishenko.maksim.either.networkUtils.retorfit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.mishenko.maksim.either.Either
-import ru.mishenko.maksim.either.factory.ReasonFactory
-import ru.mishenko.maksim.either.networkUtils.NetworkReasonFactory
 
 object CallUtils {
     fun <T> callback(
@@ -26,15 +23,5 @@ object CallUtils {
         onFail: (Call<T>, Throwable) -> Unit
     ) {
         enqueue(callback(onSuccess, onFail))
-    }
-
-    fun <E, T> Call<T>.enqueue(
-        reasonFactory: ReasonFactory<E>,
-        callback: (Call<T>, Either<E, Response<T>>) -> Unit
-    ) {
-        enqueue(
-            onSuccess = { call, response -> callback(call, Either.Success(response)) },
-            onFail = { call, e -> callback(call, Either.Failure(reasonFactory(e))) }
-        )
     }
 }

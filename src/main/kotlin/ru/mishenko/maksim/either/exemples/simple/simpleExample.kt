@@ -1,5 +1,6 @@
 package ru.mishenko.maksim.either.exemples.simple
 
+import ru.mishenko.maksim.either.Either
 import ru.mishenko.maksim.either.getOrDefault
 import ru.mishenko.maksim.either.onFailure
 import ru.mishenko.maksim.either.onSuccess
